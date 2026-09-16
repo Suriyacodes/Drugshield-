@@ -99,6 +99,15 @@ export default function HomePage() {
               DrugShield provides schools, youth centers, and health districts with proven substance education, confidential self-screenings, digital QR attendance, and certified peer volunteer intervention.
             </p>
 
+            {/* Member Portal CTA */}
+            <div className="flex justify-center pt-2">
+              <Link
+                href="/login"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-sm shadow-xs transition-colors flex items-center justify-center gap-2"
+              >
+                <span>Sign In to Member Portal</span>
+              </Link>
+            </div>
 
             {/* Micro reassurance */}
             <div className="flex items-center justify-center gap-6 pt-4 text-xs text-slate-500 dark:text-slate-400">
