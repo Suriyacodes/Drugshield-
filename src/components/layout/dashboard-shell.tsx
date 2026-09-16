@@ -29,7 +29,6 @@ export type RoleType = "admin" | "volunteer" | "participant";
 
 interface DashboardContextType {
   currentRole: RoleType;
-  setRole: (role: RoleType) => void;
   userProfile?: {
     full_name?: string | null;
     role?: string | null;
@@ -38,7 +37,6 @@ interface DashboardContextType {
 
 const DashboardContext = createContext<DashboardContextType>({
   currentRole: "admin",
-  setRole: () => {},
 });
 
 export const useDashboard = () => useContext(DashboardContext);
@@ -57,9 +55,8 @@ export function DashboardShell({
   initialRole = "admin",
   userProfile,
 }: DashboardShellProps) {
-  const [currentRole, setRole] = useState<RoleType>(
-    (userProfile?.role as RoleType) || initialRole
-  );
+  const currentRole: RoleType =
+    (userProfile?.role as RoleType) || initialRole;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const pathname = usePathname();
@@ -141,7 +138,7 @@ export function DashboardShell({
   );
 
   return (
-    <DashboardContext.Provider value={{ currentRole, setRole, userProfile }}>
+    <DashboardContext.Provider value={{ currentRole, userProfile }}>
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col antialiased">
         {/* Urgent Crisis Bar on top */}
         <div className="bg-slate-900 text-slate-300 text-xs px-4 py-1.5 flex items-center justify-between border-b border-slate-800">
@@ -151,25 +148,6 @@ export function DashboardShell({
             <span className="hidden sm:inline">24/7 Helpline 1-800-662-4357</span>
           </div>
           <div className="flex items-center gap-3">
-            {/* Interactive Role Switcher Pill for Previewing */}
-            <div className="flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700">
-              <span className="text-[10px] text-slate-400 px-2 font-medium uppercase tracking-wider hidden sm:inline">
-                View As:
-              </span>
-              {(["admin", "volunteer", "participant"] as RoleType[]).map((r) => (
-                <button
-                  key={r}
-                  onClick={() => setRole(r)}
-                  className={`px-2 py-0.5 rounded text-[11px] font-medium capitalize transition-all ${
-                    currentRole === r
-                      ? "bg-teal-500 text-slate-950 font-bold shadow-xs"
-                      : "text-slate-400 hover:text-white"
-                  }`}
-                >
-                  {r}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
 

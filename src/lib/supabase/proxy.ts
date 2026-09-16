@@ -31,7 +31,53 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  await supabase.auth.getClaims();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return supabaseResponse;
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  const role = profile?.role;
+
+  const adminOnlyRoutes = [
+    "/volunteers",
+    "/analytics",
+  ];
+
+  const adminVolunteerRoutes = [
+    "/participants",
+    "/ai-tools",
+  ];
+
+  const pathname = request.nextUrl.pathname;
+
+  const isAdminOnlyRoute = adminOnlyRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+
+  const isAdminVolunteerRoute = adminVolunteerRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+
+  if (isAdminOnlyRoute && role !== "admin") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  if (
+    isAdminVolunteerRoute &&
+    role !== "admin" &&
+    role !== "volunteer"
+  ) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
 
   return supabaseResponse;
 }
