@@ -51,7 +51,7 @@ export default function SignupPage() {
 
     setMessage("Account created successfully. Check your email if confirmation is enabled.");
     setLoading(false);
-    setTimeout(() => router.push("/"), 1500);
+    setTimeout(() => router.push("/login"), 1500);
   }
 
   return (
@@ -255,6 +255,17 @@ export default function SignupPage() {
               )}
             </button>
 
+            <div className="text-center pt-2">
+              <p className="text-xs text-slate-500">
+                Already have an account?{" "}
+                <Link
+                  href="/login"
+                  className="font-bold text-teal-600 dark:text-teal-400 hover:underline"
+                >
+                  Sign in
+                </Link>
+              </p>
+            </div>
           </form>
         </div>
       </div>

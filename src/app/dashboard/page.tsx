@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   const { data: claimsData } = await supabase.auth.getClaims();
 
   if (!claimsData?.claims) {
-    redirect("/");
+    redirect("/login");
   }
 
   const userId = claimsData.claims.sub;
