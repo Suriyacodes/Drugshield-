@@ -85,7 +85,6 @@ export function PublicFooter() {
             Organization & Portals
           </h5>
           <ul className="space-y-2 text-xs">
-            <li><Link href="/login" className="hover:text-teal-400 transition-colors">Staff & Field Login</Link></li>
             <li><Link href="/signup" className="hover:text-teal-400 transition-colors">Join as Volunteer</Link></li>
             <li><Link href="/dashboard" className="hover:text-teal-400 transition-colors">Member Dashboard</Link></li>
             <li><Link href="/ai-tools" className="hover:text-teal-400 transition-colors">AI Facilitator Tools</Link></li>

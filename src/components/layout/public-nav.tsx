@@ -61,12 +61,6 @@ export function PublicNav() {
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center gap-3">
           <Link
-            href="/login"
-            className="text-sm font-semibold px-4 py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-          >
-            Sign In
-          </Link>
-          <Link
             href="/signup"
             className="text-sm font-semibold px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white shadow-sm shadow-teal-600/20 transition-all flex items-center gap-1.5"
           >
@@ -119,13 +113,6 @@ export function PublicNav() {
             </Link>
           </div>
           <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2.5 text-center font-medium border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-200"
-            >
-              Sign In to Portal
-            </Link>
             <Link
               href="/signup"
               onClick={() => setMobileMenuOpen(false)}
